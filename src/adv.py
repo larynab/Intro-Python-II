@@ -4,7 +4,7 @@ from room import Room
 #fun
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                """North of you, the cave mount beckons"""),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -49,3 +49,6 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+def current_room():
+    print("Welcome, adventurer, you have travelled far and ended up near a cave. You stand outside waiting and looking where to go next")
+    print("You are currently in Room: %s" % (room))
