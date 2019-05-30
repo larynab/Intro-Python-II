@@ -1,7 +1,7 @@
 from room import Room
-
-# Declare all the rooms
-#fun
+from player import Player
+from item import Item
+#Room List
 room = {
     'outside':  Room("Outside Cave Entrance",
                 """North of you, the cave mount beckons"""),
@@ -14,10 +14,11 @@ room = {
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south."""),
 }
-
-
-# Link rooms together
-
+#player list
+player = {'user1': Player("Azhin")}
+#item List
+item = {'apple': Item("apple")}
+#Room Operations
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
@@ -26,38 +27,31 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
-
-#
+room['outside'].addItem(item['apple'])
+#--------------------------------------------------------------------------------
 # Main
-#
-
 # Make a new player object that is currently in the 'outside' room.
-
 # Write a loop that:
-#
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
-#
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
-#
 # If the user enters "q", quit the game.
-#welcome message
-
+#--------------------------------------------------------------------------------
 #variable
 starter_room = room['outside']
 room = starter_room
-def current_room():
-   print("You are currently in Room: %s \n" % (room))
-
+player = player['user1']
 #main_loop
 while True:
+    #welcome message
     if room == starter_room:
-        print("Welcome, adventurer, you have travelled far and ended up near a cave. You stand outside waiting and looking where to go next\n")    
+        print(f"Welcome, {player.name}, you have travelled far and ended up near a cave. You stand outside waiting and looking where to go next\n")    
     #loop print
-    print(f"You are in the: {room.name}. {room.description}. \n")
-    #variable
+    print(f"You are at the: {room.name}. {room.description}. \n")
+    print(f"This room contains {room.inventory[0].name}")
+    #user input loop variables
     direction = input("please proceed with the directions north > n, south > s, east > e, west > w \n")
 
     if direction == 'n':
