@@ -50,22 +50,30 @@ while True:
         print(f"Welcome, {player.name}, you have travelled far and ended up near a cave. You stand outside waiting and looking where to go next\n")    
     #loop print
     print(f"You are at the: {room.name}. {room.description}. \n")
-    print(f"This room contains {room.inventory[0].name}")
-    #user input loop variables
-    direction = input("please proceed with the directions north > n, south > s, east > e, west > w \n")
+    print(f"This room contains {room}\n")
+    print(f"Your inventory: {player.inventory}\n")
+    #item input
+    #really important
+    cmd = ' '.join(input("please proceed with the directions north > 'n', south > 's', east > 'e', west > 'w' \n, or 'get itemname'\n Enter command: ").lower().split()).split(" ")
+    get_item = cmd[0]
+    # drop_item = input("drop item to room with > drop itemname\n")
+    if get_item == 'get':
+        #dont put print inside object, related to MVC
+        room.transferItem(cmd[1], player)   
 
-    if direction == 'n':
+    #direction 
+    if cmd[0] == 'n':
         print("going north \n")
         room = room.n_to
-    if direction == 's':
+    if cmd[0] == 's':
         print("going south \n")
         room = room.s_to
-    if direction == 'e':
+    if cmd[0] == 'e':
         print("going east \n")
         room = room.e_to
-    if direction == 'w':
+    if cmd[0] == 'w':
         print("going west \n")
         room = room.w_to    
-    elif direction == 'q':
+    elif cmd[0] == 'q':
         print("see you later \n")
         quit

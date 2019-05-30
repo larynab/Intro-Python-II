@@ -7,3 +7,5 @@ class Player:
         self.name = name
         self.room = room
         self.inventory = inventory
+    def addItem(self, item):
+        self.inventory.append(item) 

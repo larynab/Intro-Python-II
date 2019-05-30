@@ -15,3 +15,22 @@ class Room:
             hazards += music
     def addItem(self, item):
         self.inventory.append(item) 
+    def transferItem(self, itemname, player):
+        for index, item in enumerate(self.inventory):
+            print(index)
+            print(itemname)
+            print(self.inventory)
+            if  item.name == itemname:
+                print(f"picked up {itemname}, and added to your inventory")
+                founditem = item 
+                del self.inventory[index]
+                player.addItem(founditem)
+                return
+        print("item not found")
+        return None  
+    def __str__(self):
+        #empty space
+        inv_str = ""
+        for item in self.inventory:
+            inv_str += item.name + " "
+        return inv_str    
